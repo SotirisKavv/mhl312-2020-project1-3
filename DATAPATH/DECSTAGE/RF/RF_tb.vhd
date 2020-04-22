@@ -121,7 +121,6 @@ begin
 		wait for 100 ns;
 		
       wait;
-		
    end process;
 
 end;

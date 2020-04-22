@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
--- Port Declaration for 32-bit Register (reg)
+-- Port Declaration for PC Register (reg)
 entity reg is
 	port (	
 			datain : in std_logic_vector (31 downto 0);
@@ -12,7 +12,7 @@ end reg;
 
 architecture behavior of reg is
 
--- Behavioral Process for 32-bit Register (reg)
+-- Behavioral Process for PC Register (reg)
 begin
 	
 	process(clk, rst)
