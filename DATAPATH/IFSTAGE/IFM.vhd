@@ -25,7 +25,7 @@ architecture behavior of IFM is
 		);
 	end component;
 
-	-- Port Declaration for Memory Instance Component (MEM)
+	-- Port Declaration for RAM Instance Component (RAM)
 	component RAM is
 		port (
 				-- Used Ports
@@ -56,7 +56,7 @@ begin
 				PC => tmp
 			);
 
-	-- Internal (IFM) Structure for Memory Instance Component (MEM)
+	-- Internal (IFM) Structure for RAM Instance Component (RAM)
 	u1: 	RAM port map (	
 				clk => Clk,
 				inst_addr => tmp(12 downto 2),

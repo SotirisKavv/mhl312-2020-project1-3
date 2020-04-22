@@ -1,20 +1,23 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
 
--- Port Declaration for (+4) Incrementor (inc)
+-- Port Declaration for Incrementor (inc)
 entity inc is
 	port (	
-			input : in std_logic_vector(31 downto 0);
-			output : out std_logic_vector(31 downto 0)
+			input0, input1 : in std_logic_vector(31 downto 0);
+			output0, output1 : out std_logic_vector(31 downto 0)
 	);
 end inc;
 
 architecture behavior of inc is
 
--- Behavioral Process for (+4) Incrementor (inc)
+-- Behavioral Process for Incrementor (inc)
 begin
 	
-	output <= std_logic_vector(unsigned(input) + 4);
+	-- (PC + 4)
+	output0 <= (input0 + 4);
+	-- (PC + 4) + PC_Immed
+	output1 <= (input0 + 4) + input1;
 	
 end behavior;

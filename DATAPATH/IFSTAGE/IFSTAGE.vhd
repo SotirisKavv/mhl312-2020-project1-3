@@ -1,8 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
 
--- Custom Package to assist in Port Declaration for Multiplexer Component (mux)
+-- Custom Package to assist in Port Declaration for Multiplexer Component (mu2x1)
 library work;
 use work.custom_package.all;
 
@@ -20,16 +19,16 @@ architecture behavior of IFSTAGE is
 
 -- Component Declarations for IF Stage (IFSTAGE)
 	
-	-- Port Declaration for Addder Component (mux)	
-	component add is
+	-- Port Declaration for Incrementor Component (inc)
+	component inc is
 		port (	
-			input1, input2 : in std_logic_vector(31 downto 0);
-			output : out std_logic_vector(31 downto 0)
+			input0, input1 : in std_logic_vector(31 downto 0);
+         output0, output1 : out std_logic_vector(31 downto 0)
 	);
 	end component;
 	
-	-- Port Declaration for Multiplexer Component (mux)
-	component mux is
+	-- Port Declaration for Multiplexer Component (mu2x1)
+	component mu2x1 is
 		port (
 				input : in custom_type2;
 				sel : in std_logic_vector(0 downto 0);
@@ -37,21 +36,13 @@ architecture behavior of IFSTAGE is
 		);
 	end component;
 
-	-- Port Declaration for PC Register Component (pcr)
-	component pcr is
+	-- Port Declaration for PC Register Component (reg)
+	component reg is
 		port (
-				input : in std_logic_vector(31 downto 0);
-				en, clk, rst : in std_logic;
-				output : out std_logic_vector(31 downto 0)
+				datain : in std_logic_vector(31 downto 0);
+				we, clk, rst : in std_logic;
+				dataout : out std_logic_vector(31 downto 0)
 		);
-	end component;
-	
-	-- Port Declaration for Incrementor Component (inc)
-	component inc is
-		port (	
-			input : in std_logic_vector(31 downto 0);
-			output : out std_logic_vector(31 downto 0)
-	);
 	end component;
 
 	-- Temporary Signal Declaration to assist in Behavioral Process of IF Stage (IFSTAGE)
@@ -60,36 +51,31 @@ architecture behavior of IFSTAGE is
 -- Behavioral Process for IF Stage (IFSTAGE)
 begin
 	
-	-- Internal (IFSTAGE) Structure for Adder (add)
-	u0:	add port map (	
-				input1 => tmp0,
-				input2 => PC_Immed,
-				output => tmp1
+	-- Internal (IFSTAGE) Structure for Incrementor (inc)
+	u0:	inc port map (	
+				input0 => tmp3,
+				input1 => PC_Immed,
+				output0 => tmp0,
+				output1 => tmp1
 			);
 	
-	-- Internal (IFSTAGE) Structure for Multiplexer (mux)
-	u1: 	mux port map (	
+	-- Internal (IFSTAGE) Structure for Multiplexer (mu2x1)
+	u1: 	mu2x1 port map (	
 				input(0) => tmp0,
 				input(1) => tmp1,
 				sel => PC_Sel,
 				output => tmp2
 			);
 			
-	-- Internal (IFSTAGE) Structure for PC Register (pcr)
-	u2: 	pcr port map (
-				input => tmp2,
-				en => PC_LdEn,
+	-- Internal (IFSTAGE) Structure for PC Register (reg)
+	u2: 	reg port map (
+				datain => tmp2,
+				we => PC_LdEn,
 				clk => Clk,
 				rst => Reset,
-				output => tmp3
+				dataout => tmp3
 			);
 			
 	PC <= tmp3;
-	
-	-- Internal (IFSTAGE) Structure for Incrementor (inc)
-	u3:	inc port map (	
-				input => tmp3,
-				output => tmp0
-			);
 			
 end behavior;
