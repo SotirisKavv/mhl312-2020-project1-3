@@ -10,7 +10,7 @@ architecture behavior of IFSTAGE_tb is
 	component IFSTAGE
    port (
          PC_Immed : in std_logic_vector(31 downto 0);
-			PC_Sel : in std_logic_vector(0 downto 0);
+			PC_Sel : in std_logic;
 			PC_LdEn, Clk, Reset : in std_logic;
 			PC : out std_logic_vector(31 downto 0)
 	);
@@ -18,7 +18,7 @@ architecture behavior of IFSTAGE_tb is
 
    --Inputs
    signal PC_Immed : std_logic_vector(31 downto 0) := (others => '0');
-   signal PC_sel : std_logic_vector(0 downto 0) := (others => '0');
+   signal PC_sel : std_logic := '0';
    signal PC_LdEn, Clk, Reset : std_logic := '0';
 
  	--Outputs
@@ -56,16 +56,16 @@ begin
 		wait for 100 ns;
 		
 		PC_Immed <= "00000000000000000000000000000000";
-		PC_sel <= "1";
+		PC_sel <= '1';
 		PC_LdEn <= '1';
 		Reset <= '0';
 		wait for 200 ns;
 		
 		PC_Immed <= "00000000000000000000000000001010";
-		PC_sel <= "1";
+		PC_sel <= '1';
 		wait for 200 ns;
 		
-		PC_sel <= "0";
+		PC_sel <= '0';
 		wait for 200 ns;
 		
 		PC_LdEn <= '0';

@@ -5,7 +5,7 @@ use ieee.std_logic_1164.all;
 entity IFM is
 	port (
 			PC_Immed : in std_logic_vector(31 downto 0);
-			PC_Sel : in std_logic_vector(0 downto 0);
+			PC_Sel : in std_logic;
 			PC_LdEn, Clk, Reset : in std_logic;
 			Instr : out std_logic_vector(31 downto 0)
 	);
@@ -19,7 +19,7 @@ architecture behavior of IFM is
 	component IFSTAGE IS
 		port (  
 				PC_Immed : in std_logic_vector(31 downto 0);
-				PC_Sel : in std_logic_vector(0 downto 0);
+				PC_Sel : in std_logic;
 				PC_LdEn, Clk, Reset : in std_logic;
 				PC : out std_logic_vector(31 downto 0)
 		);

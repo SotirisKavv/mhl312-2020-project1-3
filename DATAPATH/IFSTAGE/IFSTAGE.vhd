@@ -9,7 +9,7 @@ use work.custom_package.all;
 entity IFSTAGE is
 	port (
 			PC_Immed : in std_logic_vector(31 downto 0);
-			PC_Sel : in std_logic_vector(0 downto 0);
+			PC_Sel : in std_logic;
 			PC_LdEn, Clk, Reset : in std_logic;
 			PC : out std_logic_vector(31 downto 0)
 	); 
@@ -28,11 +28,12 @@ architecture behavior of IFSTAGE is
 	end component;
 	
 	-- Port Declaration for Multiplexer Component (mu2x1)
-	component mu2x1 is
+	component MUX322x1 is
 		port (
-				input : in custom_type2;
-				sel : in std_logic_vector(0 downto 0);
-				output : out std_logic_vector(31 downto 0)
+				InA : in  STD_LOGIC_VECTOR (31 downto 0);
+				InB : in  STD_LOGIC_VECTOR (31 downto 0);
+				SEL : in  STD_LOGIC;
+				Output : out  STD_LOGIC_VECTOR (31 downto 0)
 		);
 	end component;
 
@@ -60,11 +61,11 @@ begin
 			);
 	
 	-- Internal (IFSTAGE) Structure for Multiplexer (mu2x1)
-	u1: 	mu2x1 port map (	
-				input(0) => tmp0,
-				input(1) => tmp1,
-				sel => PC_Sel,
-				output => tmp2
+	u1: 	MUX322x1 port map (	
+				InA => tmp0,
+				InB => tmp1,
+				SEL => PC_Sel,
+				Output => tmp2
 			);
 			
 	-- Internal (IFSTAGE) Structure for PC Register (reg)

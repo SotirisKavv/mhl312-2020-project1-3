@@ -10,7 +10,7 @@ architecture behavior of IFM_tb is
 	component IFM
 	port (
 			PC_Immed : in std_logic_vector(31 downto 0);
-			PC_Sel : in std_logic_vector(0 downto 0);
+			PC_Sel : in std_logic;
 			PC_LdEn, Clk, Reset : in std_logic;
 			Instr : out std_logic_vector(31 downto 0)
 	);
@@ -18,7 +18,7 @@ architecture behavior of IFM_tb is
    
    --Inputs
    signal PC_Immed : std_logic_vector(31 downto 0) := (others => '0');
-   signal PC_Sel : std_logic_vector(0 downto 0) := (others => '0');
+   signal PC_Sel : std_logic := '0';
    signal PC_LdEn, Clk, Reset : std_logic := '0';
 
  	--Outputs
@@ -53,49 +53,49 @@ begin
    begin		
 
 		PC_Immed <= "00000000000000000000000000000000";
-		PC_sel <= "0";
+		PC_sel <= '0';
 		PC_LdEn <= '0'; 
 		Reset <= '1';
 		wait for 100 ns;
 		
 		PC_Immed <= "00000000000000000000000000000100";
-		PC_sel <= "0";
+		PC_sel <= '0';
 		PC_LdEn <= '1';
 		Reset <= '0';
 		wait for 100 ns;
 		
 		PC_Immed <= "00000000000000000000000000000000";
-		PC_sel <= "0";
+		PC_sel <= '0';
 		PC_LdEn <= '1';
 		Reset <= '0';
 		wait for 100 ns;
 		
 		PC_Immed <= "00000000000000000000000000010000";
-		PC_sel <= "1";
+		PC_sel <= '1';
 		PC_LdEn <= '1';
 		Reset <= '0';
 		wait for 100 ns;
 		
 		PC_Immed <= "00000000000000000000000000000000";
-		PC_sel <= "0";
+		PC_sel <= '0';
 		PC_LdEn <= '1';
 		Reset <= '0';
 		wait for 100 ns;
 		
 		PC_Immed <= "00000000000000000000000000000100";
-		PC_sel <= "0";
+		PC_sel <= '0';
 		PC_LdEn <= '1';
 		Reset <= '0';
 		wait for 100 ns;
 
 		PC_Immed <= "00000000000000000000000000000011";
-		PC_sel <= "1";
+		PC_sel <= '1';
 		PC_LdEn <= '1';
 		Reset <= '0';
 		wait for 100 ns;
 		
 		PC_Immed <= "00000000000000000000000000000000";
-		PC_sel <= "0";
+		PC_sel <= '0';
 		PC_LdEn <= '1';
 		Reset <= '0';
 		wait for 100 ns;
