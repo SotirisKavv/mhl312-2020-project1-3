@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 -- Port Declaration for MEMSTAGE-RAM (MM)
 entity MM is
@@ -26,7 +27,7 @@ architecture behavior of MM is
 				MEM_DataIn : in std_logic_vector(31 downto 0);
 				MEM_DataOut : out std_logic_vector(31 downto 0);
 				MM_WrEn : out std_logic;
-				MM_Addr : out std_logic_vector(31 downto 0);
+				MM_Addr : out std_logic_vector(10 downto 0);
 				MM_WrData : out std_logic_vector(31 downto 0);
 				MM_RdData : in std_logic_vector(31 downto 0)
 		);
@@ -49,7 +50,8 @@ architecture behavior of MM is
 	
 	-- Temporary Signal Declaration to assist in Behavioral Process of MEMSTAGE-RAM (MM)
 	signal tmp0 : std_logic; 
-	signal tmp1, tmp2, tmp3 : std_logic_vector(31 downto 0);
+	signal tmp1 : std_logic_vector(10 downto 0);
+	signal tmp2, tmp3 : std_logic_vector(31 downto 0);
 
 -- Behavioral Process for MEMSTAGE-RAM (MM)
 begin
@@ -73,7 +75,7 @@ begin
 				inst_dout => open,
 				clk => Clk,
 				data_we => tmp0,
-				data_addr => tmp1(12 downto 2),
+				data_addr => tmp1,
 				data_din => tmp2,
 				data_dout => tmp3
 			);	

@@ -15,7 +15,7 @@ architecture behavior of MEMSTAGE_tb is
 			MEM_DataIn : in std_logic_vector(31 downto 0);
 			MEM_DataOut : out std_logic_vector(31 downto 0);
 			MM_WrEn : out std_logic;
-			MM_Addr : out std_logic_vector(31 downto 0);
+			MM_Addr : out std_logic_vector(10 downto 0);
 			MM_WrData : out std_logic_vector(31 downto 0);
 			MM_RdData : in std_logic_vector(31 downto 0)
 	);
@@ -31,7 +31,7 @@ architecture behavior of MEMSTAGE_tb is
  	--Outputs
    signal MEM_DataOut : std_logic_vector(31 downto 0);
    signal MM_WrEn : std_logic;
-	signal MM_Addr : std_logic_vector(31 downto 0);
+	signal MM_Addr : std_logic_vector(10 downto 0);
    signal MM_WrData : std_logic_vector(31 downto 0);
 	
 begin
