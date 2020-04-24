@@ -35,7 +35,7 @@ architecture syn of RAM is
 		return ram; 
 	end function; 
 
-	signal RAM: ram_type := InitRamFromFile("test2.data"); 
+	signal RAM: ram_type := InitRamFromFile("test1.data"); 
 	
 	begin
 		process (clk) 

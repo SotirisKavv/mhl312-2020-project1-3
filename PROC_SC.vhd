@@ -82,6 +82,7 @@ architecture behavior of PROC_SC is
 				ExtOp : out  STD_LOGIC_VECTOR (1 downto 0);
 				-- Signal to IF
 				nPC_sel : out  STD_LOGIC;
+				LoadEn : out STD_LOGIC;
 				-- Signals to EX
 				ALUctr : out  STD_LOGIC_VECTOR (3 downto 0);
 				ALUsrc : out  STD_LOGIC;
@@ -93,7 +94,7 @@ architecture behavior of PROC_SC is
 
 	
 	-- Temporary Signal Declaration to assist in Behavioral Process of Top Level Module (PROC_SC)
-		signal tmp0, tmp2, tmp3, tmp4, tmp6, tmp8, tmp9, tmp14, tmp17 : std_logic;
+		signal tmp0, tmp1, tmp2, tmp3, tmp4, tmp6, tmp8, tmp9, tmp14, tmp17 : std_logic;
 		signal tmp5 : std_logic_vector(1 downto 0);
 		signal tmp7 : std_logic_vector(3 downto 0);
 		signal tmp15: std_logic_vector(10 downto 0);
@@ -111,6 +112,7 @@ begin
 				MemtoReg => tmp3,
 				ExtOp => tmp5,
 				nPC_sel => tmp0,
+				LoadEn => tmp1,
 				ALUctr => tmp7,
 				ALUsrc => tmp6,
 				MemWr => tmp9,
@@ -123,7 +125,7 @@ begin
 				CLK => CLK,
 				RST => RST,
 				CTRL_PC_Sel => tmp0,
-				CTRL_PC_LdEn => '1',
+				CTRL_PC_LdEn => tmp1,
 				CTRL_RF_WrEn => tmp2,
 				CTRL_RF_WrData_Sel => tmp3,
 				CTRL_RF_B_Sel => tmp4,
@@ -134,8 +136,8 @@ begin
 				CTRL_MEM_WrEn => tmp9,
 				RAM_Instr => tmp10,
 				RAM_MM_RdData => tmp11,
-				CTRL_Instr => tmp12, -- CTRL
-				CTRL_ALU_zero => tmp17, --CTRL
+				CTRL_Instr => tmp12,
+				CTRL_ALU_zero => tmp17,
 				DP_ALU_ovf => DP_ALU_ovf,
 				DP_ALU_cout => DP_ALU_cout, 
 				RAM_PC => tmp13,

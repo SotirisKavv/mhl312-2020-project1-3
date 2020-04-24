@@ -16,6 +16,7 @@ ARCHITECTURE behavior OF Control_tb IS
          RegDst : OUT  std_logic;
          RegWr : OUT  std_logic;
          nPC_sel : OUT  std_logic;
+			LoadEn : OUT std_logic;
          ALUctr : OUT  std_logic_vector(3 downto 0);
          ExtOp : OUT  std_logic_vector(1 downto 0);
          ALUsrc : OUT  std_logic;
@@ -35,6 +36,7 @@ ARCHITECTURE behavior OF Control_tb IS
    signal RegDst : std_logic;
    signal RegWr : std_logic;
    signal nPC_sel : std_logic;
+	signal LoadEn : std_logic;
    signal ALUctr : std_logic_vector(3 downto 0);
    signal ExtOp : std_logic_vector(1 downto 0);
    signal ALUsrc : std_logic;
@@ -51,6 +53,7 @@ BEGIN
           Zero => Zero,
           RegDst => RegDst,
           RegWr => RegWr,
+			 LoadEn => LoadEn,
           nPC_sel => nPC_sel,
           ALUctr => ALUctr,
           ExtOp => ExtOp,
@@ -98,6 +101,8 @@ BEGIN
 		Instr <= "00011100000000000000000000000000";						wait for 100 ns;
 		Instr <= "00111100000000000000000000000000";						wait for 100 ns;
 		Instr <= "01111100000000000000000000000000";						wait for 100 ns;
+		-- Finish Program
+		Instr <= x"00000000";	wait for 100 ns;
 
       -- insert stimulus here 
 
